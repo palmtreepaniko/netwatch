@@ -15,6 +15,11 @@ Inspired by Network Operations Center (NOC) monitoring tools, the project aims t
 >  **Work in Progress:** Netwatch is currently under development. New features, improvements, and fixes are being added.
 
 ---
+## Dashboard Preview
+
+![Netwatch Dashboard](netwatch-dashboard.png)
+
+> **Note:** Netwatch is still under development. Please ignore the unused template pages. These are inherited from the original Horizon UI Chakra template and are not part of Netwatch's functionality.
 
 ## Dashboard Template
 
