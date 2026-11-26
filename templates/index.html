@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netwatch | Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <h2>NETWATCH</h2>
+
+        <p class="menu-title">MENU</p>
+
+        <a href="/" class="active">Dashboard</a>
+        <a href="#">Devices</a>
+        <a href="#">Monitoring</a>
+        <a href="#">Events</a>
+        <a href="#">Settings</a>
+
+        <div class="sidebar-footer">
+            Network Monitoring System
+            <br>
+            Version 0.1.0
+        </div>
+
+    </div>
+
+
+    <div class="main-content">
+
+        <header>
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome to your network overview.</p>
+            </div>
+
+            <div class="status">
+                SYSTEM ONLINE
+            </div>
+        </header>
+
+
+        <section class="statistics">
+
+            <div class="card">
+                <p>Total Devices</p>
+                <h2>0</h2>
+                <span>Devices monitored</span>
+            </div>
+
+            <div class="card">
+                <p>Online Devices</p>
+                <h2 class="green">0</h2>
+                <span>Currently reachable</span>
+            </div>
+
+            <div class="card">
+                <p>Offline Devices</p>
+                <h2 class="red">0</h2>
+                <span>Currently unreachable</span>
+            </div>
+
+            <div class="card">
+                <p>Average Latency</p>
+                <h2>--</h2>
+                <span>Response time</span>
+            </div>
+
+        </section>
+
+
+        <section class="devices-section">
+
+            <h2>Monitored Devices</h2>
+
+            <div class="device-card">
+                <div>
+                    <h3>No devices yet</h3>
+                    <p>Add your first device to start monitoring.</p>
+                </div>
+
+                <span class="offline">NOT CONFIGURED</span>
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Netwatch | Devices</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f4f7fe;
+            color: #2b3674;
+            padding: 35px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #a3aed0;
+            margin-top: 7px;
+            font-size: 14px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            background: #4318ff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(112, 144, 176, 0.08);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #e0e5f2;
+            border-radius: 12px;
+            outline: none;
+            font-family: inherit;
+            color: #2b3674;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            border-color: #4318ff;
+        }
+
+        .add-button {
+            margin-top: 20px;
+            padding: 13px 22px;
+            background: #4318ff;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .add-button:hover {
+            background: #3311cc;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .count {
+            background: #e9e3ff;
+            color: #4318ff;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            color: #a3aed0;
+            font-size: 12px;
+            padding: 15px;
+            border-bottom: 1px solid #f0f2f8;
+        }
+
+        td {
+            padding: 17px 15px;
+            border-bottom: 1px solid #f0f2f8;
+            font-size: 14px;
+        }
+
+        .device-name {
+            font-weight: 700;
+        }
+
+        .device-type {
+            background: #f4f7fe;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status {
+            color: #ffb547;
+            background: #fff7e6;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .delete-button {
+            border: none;
+            background: #fff0f0;
+            color: #ee5d50;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .empty {
+            text-align: center;
+            color: #a3aed0;
+            padding: 35px;
+        }
+
+        @media (max-width: 750px) {
+            body {
+                padding: 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 650px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div>
+            <h1>Network Devices</h1>
+            <p>Manage and monitor your connected network devices.</p>
+        </div>
+
+        <a href="http://localhost:3000/admin/default" class="back-link">
+            Dashboard
+        </a>
+    </div>
+
+    <!-- Add Device -->
+    <div class="card">
+
+        <h2>Add New Device</h2>
+
+        <form action="/devices/add" method="POST">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Device Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="e.g. Main Router"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>IP Address</label>
+                    <input
+                        type="text"
+                        name="ip_address"
+                        placeholder="e.g. 192.168.1.1"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Device Type</label>
+                    <select name="device_type" required>
+                        <option value="Router">Router</option>
+                        <option value="Switch">Switch</option>
+                        <option value="Computer">Computer</option>
+                        <option value="Server">Server</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="add-button">
+                + Add Device
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Device List -->
+    <div class="card">
+
+        <div class="table-header">
+            <h2>Registered Devices</h2>
+
+            <span class="count">
+                {{ devices|length }} Devices
+            </span>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>DEVICE NAME</th>
+                        <th>IP ADDRESS</th>
+                        <th>DEVICE TYPE</th>
+                        <th>STATUS</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for device in devices %}
+
+                    <tr>
+                        <td class="device-name">
+                            {{ device.name }}
+                        </td>
+
+                        <td>
+                            {{ device.ip_address }}
+                        </td>
+
+                        <td>
+                            <span class="device-type">
+                                {{ device.device_type }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="status">
+                                Registered
+                            </span>
+                        </td>
+
+                        <td>
+                            <form
+                                action="/devices/delete/{{ device.id }}"
+                                method="POST"
+                                onsubmit="return confirm('Delete this device?')"
+                            >
+                                <button class="delete-button" type="submit">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+                        <td colspan="5" class="empty">
+                            No devices registered yet. Add your first device above.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
